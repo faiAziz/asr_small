@@ -3,6 +3,7 @@ from pathlib import Path
 from os.path import join, getsize
 from joblib import Parallel, delayed
 from torch.utils.data import Dataset
+from os import getcwd
 
 # Additional (official) text src provided
 #OFFICIAL_TXT_SRC = ['librispeech-lm-norm.txt']
@@ -21,7 +22,7 @@ class QuranDataset(Dataset):
         # List all wave files
         file_list = []
         for s in split:
-            with open('/Users/user/Documents/Courses/ML_RL/Assignments/Project/End-to-end-ASR-Pytorch/data/'+s+'/src.txt') as f:
+            with open(getcwd()+ '/data/'+s+'/src.txt') as f:
                 split_list = f.readlines()
                 split_list = [x.replace('\n', '') for x in split_list]
             file_list += split_list
@@ -29,7 +30,7 @@ class QuranDataset(Dataset):
         # Read text
         text = []
         for s in split:
-            with open('/Users/user/Documents/Courses/ML_RL/Assignments/Project/End-to-end-ASR-Pytorch/data/'+s+'/tgt.txt') as f:
+            with open(getcwd()+ '/data/'+s+'/tgt.txt') as f:
                 split_text = f.readlines()
                 split_text = [x.replace('\n', '') for x in split_text]
             text += split_text
@@ -67,7 +68,7 @@ class QuranTextDataset(Dataset):
 
         file_list = []
         for s in split:
-            with open('/Users/user/Documents/Courses/ML_RL/Assignments/Project/End-to-end-ASR-Pytorch/data/'+s+'/src.txt') as f:
+            with open(getcwd()+'/data/'+s+'/src.txt') as f:
                 split_list = f.readlines()
                 split_list = [x.replace('\n', '') for x in split_list]
             file_list += split_list
@@ -76,7 +77,7 @@ class QuranTextDataset(Dataset):
 
         text = []
         for s in split:
-            with open('/Users/user/Documents/Courses/ML_RL/Assignments/Project/End-to-end-ASR-Pytorch/data/'+s+'/tgt.txt') as f:
+            with open(getcwd()+'/data/'+s+'/tgt.txt') as f:
                 split_text = f.readlines()
                 split_text = [x.replace('\n', '') for x in split_text]
             text += split_text
